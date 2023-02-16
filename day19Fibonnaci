@@ -1,0 +1,24 @@
+Create a function that takes a parameter named num.Return the sum of all odd Fibonacci numbers that are less than or equal to num.
+
+function testFib(num){
+   let prevSum = 1;
+   let prevPrevSum = 1;
+   let total = 0;
+   let arrOfOddFibs = [1,1];
+
+   while (total < num){
+      total = prevSum + prevPrevSum;
+      prevPrevSum = prevSum;
+      prevSum = total;
+
+      if (total < num && total % 2 === 1) {
+         arrOfOddFibs.push(total);
+      }
+   }
+  
+   let oddFibSum = arrOfOddFibs.reduce((acc, val)=> acc + val);
+   console.log(arrOfOddFibs);
+   console.log('The oddFibSum: ' + oddFibSum);   
+}
+
+testFib(10); 
