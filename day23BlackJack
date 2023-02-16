@@ -1,0 +1,113 @@
+//You are going to create the game of Blackjack. You will need to use Node and  Readline functionality. The minimum requirements are:Example:Blackjack Rules:https://www.blackjackinfo.com/blackjack-rules/The terminal window appears on the screen. It automatically starts the game, shuffles  the deck, and gives the player two cards (print the card value to the screen ie: 4 of  Clubs Ace of Hearts).Terminal asks the user if they want to hit or stand. If hit, then another card is issued to  the player. Calculations are made and determine if the player loses, if not, continue  the game.Blackjack (Day 1 of 2)Post a screenshot of your final code to the #missions channel52 cards Proper card point values Shuffling feature One player versus the dealer Player can hit If player busts they lose If dealer busts player wins win Dealer never “hits” once they reach 17 points1. 2. 3. 4. 5. 6. 7. 8.
+
+
+var rs = require("readline-sync");
+let choice = 0;
+
+
+
+const hearts = [ {card: "ace", value: 11, suit: "hearts"}, {card: "two", value: 2, suit: "hearts"}, {card: "three", value: 3, suit: "hearts"}, {card: "four", value: 4, suit: "hearts"}, {card: "five", value: 5, suit: "hearts"},{card: "six", value: 6, suit: "hearts"},{card: "seven", value: 7, suit: "hearts"},{card: "eight", value: 8, suit: "hearts"},{card: "nine", value: 9, suit: "hearts"},{card: "ten", value: 10, suit: "hearts"},{card: "jack", value: 10, suit: "hearts"},{card: "queen", value: 10, suit: "hearts"},{card: "king", value: 10, suit: "hearts"} ];
+const clubs = [ {card: "ace", value: 11, suit: "clubs"}, {card: "two", value: 2, suit: "clubs"}, {card: "three", value: 3, suit: "clubs"}, {card: "four", value: 4, suit: "clubs"}, {card: "five", value: 5, suit: "clubs"},{card: "six", value: 6, suit: "clubs"},{card: "seven", value: 7, suit: "clubs"},{card: "eight", value: 8, suit: "clubs"},{card: "nine", value: 9, suit: "clubs"},{card: "ten", value: 10, suit: "clubs"},{card: "jack", value: 10, suit: "clubs"},{card: "queen", value: 10, suit: "clubs"},{card: "king", value: 10, suit: "clubs"} ];
+const diamonds = [ {card: "ace", value: 11, suit: "diamonds"}, {card: "two", value: 2, suit: "diamonds"}, {card: "three", value: 3, suit: "diamonds"}, {card: "four", value: 4, suit: "diamonds"}, {card: "five", value: 5, suit: "diamonds"},{card: "six", value: 6, suit: "diamonds"},{card: "seven", value: 7, suit: "diamonds"},{card: "eight", value: 8, suit: "diamonds"},{card: "nine", value: 9, suit: "diamonds"},{card: "ten", value: 10, suit: "diamonds"},{card: "jack", value: 10, suit: "diamonds"},{card: "queen", value: 10, suit: "diamonds"},{card: "king", value: 10, suit: "diamonds"} ];
+const spades = [ {card: "ace", value: 11, suit: "spades"}, {card: "two", value: 2, suit: "spades"}, {card: "three", value: 3, suit: "spades"}, {card: "four", value: 4, suit: "spades"}, {card: "five", value: 5, suit: "spades"},{card: "six", value: 6, suit: "spades"},{card: "seven", value: 7, suit: "spades"},{card: "eight", value: 8, suit: "spades"},{card: "nine", value: 9, suit: "spades"},{card: "ten", value: 10, suit: "spades"},{card: "jack", value: 10, suit: "spades"},{card: "queen", value: 10, suit: "spades"},{card: "king", value: 10, suit: "spades"} ];
+const deck = [...hearts, ...clubs, ...diamonds,...spades];
+
+function shuffle(arr){
+   arr.sort(() => Math.random() - 0.5);}
+
+class Player{
+   constructor(name){
+      this.name = name;
+      this.hand =[];
+      this.score = 0;
+   }};
+
+function aceCheck(person){
+   let aces = 0;
+   let hasAce;
+   for (let i = 0; i < person.hand.length; i++ ){
+      if (person.hand[i].card ==="ace"){ aces++;  }
+   if (aces > 0){ hasAce= true;
+   }else {  hasAce= false;
+   }
+}return hasAce;
+}
+
+function decision(){
+   choice = rs.questionInt("Do you want to hit or stand? (1 = hit , 2 = stand)");
+   return choice;
+}
+
+function startGame(){
+   let round = 1;
+   const user = new Player();
+   const dealer = new Player();
+   let victory;
+   user.score =0;
+   dealer.score =0;
+   console.log("Starting game...");
+   shuffle(deck);
+   shuffle(deck);
+   user.hand.push(deck.shift());
+   dealer.hand.push(deck.shift());
+   user.hand.push(deck.shift());
+   dealer.hand.push(deck.shift());
+   console.log("You have a " + user.hand[0].card + " of " + user.hand[0].suit + " and a " + user.hand[1].card + " of " + user.hand[1].suit);
+   console.log("The dealer has a " + dealer.hand[0].card + " of " + dealer.hand[0].suit);
+   user.score = user.hand[0].value + user.hand[1].value;
+   dealer.score = dealer.hand[0].value + dealer.hand[1].value;
+
+
+   while (user.score < 22 && dealer.score < 22 && victory == undefined) {
+      decision();
+   
+   if (choice === 1) { 
+      user.hand.push(deck.shift());
+      console.log("Risky move... your new card is a: " + user.hand[1 + round].card + " of " + user.hand[1 + round].suit);
+      user.score += user.hand[1 + round].value;
+      console.log("Your score is: " + user.score);
+      dealer.hand.push(deck.shift());
+      dealer.score += dealer.hand[1 + round].value;
+      if ((user.score > 21) && !aceCheck(user)) {
+   
+         console.log("BUSTED...");
+         victory = false;
+      } else if ((user.score > 21) && aceCheck(user)){
+         console.log("Good thing you have an ace! Let's use that ace as a one instead of an eleven.");
+         user.score -= 10;
+         console.log("your score is now: " + user.score);
+      } else if (dealer.score > 21) {
+         console.log("The dealer's score is over 21 (" + dealer.score + ") ...you win!");
+         victory = true;
+      }
+   } else if (choice == 2){
+      console.log("Playing it safe I see, your total now is: " + user.score);
+   
+      if ((dealer.score > user.score) && (dealer.score < 22) ) {
+         console.log("Sorry, the dealer won. Dealer had a score of: " + dealer.score + ", while you only had: " + user.score + ".");
+         victory = false;
+      } else if ((dealer.score < user.score) && (user.score < 22) ){
+         console.log("No way! You won! You had a score of: " + user.score + ", while the dealer only had: " + dealer.score + ".");
+         victory = true;
+      }
+   } 
+   }
+
+}
+
+
+
+
+startGame();
+
+
+
+let replay = rs.questionInt("Wanna play again? (1 = Yea!! , 2 = nah, I'm good)");
+
+if (replay == 1) {
+   startGame();
+   decision();
+
+} else if (replay == 2){
+   console.log("No worries, thanks for playing!");
+}
