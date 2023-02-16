@@ -1,0 +1,17 @@
+//Return the factorial of an integer.If the integer is represented with the letter p, 
+//a factorial is the product of all  positive integers less than or equal to p.
+//Factorials are often represented with the shorthand notation p!
+//For example: 5! = 1 * 2 * 3 * 4 * 5 = 120
+
+function factorial(num) {
+   let product=1;
+   for (let i = 1; i <= num ; i++){
+        product = product * i;  
+   }
+   return product;
+}
+
+console.log(factorial(6));
+console.log(factorial(16));
+console.log(factorial(49));
+console.log(factorial(101));
