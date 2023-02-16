@@ -1,0 +1,27 @@
+//Pig Latin is a fun way to mess around with English.If a word begins with a consonant, take the first consonant or consonant  group, move it to the end of the word, and add ay to it.If the word starts with a vowel, add the way at the end.Examples:Fire would be irefayCalifornia would be aliforniacayAlaska would be AlaskawayCreate a function that takes an English word and returns its Pig Latin equivalent.Pig LatinPost your solution to the #missions channel of the chatroom
+
+
+function porcus(word){
+   word = word.toLowerCase();
+   let porkified;
+   let index = 0;
+   let foundVowel = false;
+   while (!foundVowel){
+    if ( ['a', 'e', 'i', 'o', 'u'].includes(word[0])) {
+        foundVowel = true; } 
+      else { index++; } } 
+
+   if (index === 0){
+        porkified = word.concat('way');
+    } else {
+      let partOfWordThatMoves = word.slice(0, index);
+      let baseOfWord = word.slice(index);
+      porkified = baseOfWord.concat(partOfWordThatMoves);
+      porkified = porkified.concat('ay');
+    } console.log(porkified);
+}
+
+
+porcus("phone");
+porcus("California");
+porcus("Alaska");
