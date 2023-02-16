@@ -1,0 +1,27 @@
+Given the arrays below, perform the following tasks:
+var odds = [5,8,14,13,29,98]; 
+var evens = [11,6,2,87,43,22,104];
+
+Use the filter function on the odds array to only store odd numbers
+Use the filter function on the evens array to only store even numbers
+Add the numbers of both arrays and store the result in a variable and then print it
+
+let filteredOdds = odds.filter(function(num) {
+   return ((num % 2) !== 0);
+},0) ;
+
+let filteredEvens = evens.filter(function(num) {
+   return ((num % 2) === 0);
+},0) ;
+
+let addedFilteredEvens = filteredEvens.reduce(function(acc, val) {
+   return acc + val;
+}, 0);
+
+let addedFilteredOdds = filteredOdds.reduce(function(acc, val) {
+   return acc + val;
+}, 0);
+   
+let total = addedFilteredEvens + addedFilteredOdds;
+
+console.log('The total number of filtered numbers is: ' + total); 
