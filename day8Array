@@ -1,0 +1,13 @@
+
+//Change each element in the array to be all caps (Upper Case) - you must do this  with one line of code and without using bracket notation
+let colors =  ['blue', 'red', 'green', 'yellow', 'black', 'white'];
+
+
+for (const color of colors ) {console.log(color.toUpperCase())};
+
+
+//Using the every function determine if each item in the array is greater than zero
+
+let numbers =[-1, -2, 20,60, 77];
+let isGreaterThanZero = (number) => number > 0;
+console.log("All the numbers in the array are positive..." + numbers.every(isGreaterThanZero));
