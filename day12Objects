@@ -1,0 +1,54 @@
+Create a JavaScript object with these keys and values:Create an object with these keys and values:Part 1: ObjectsPart 2: Key CheckerWith one line of code, using built-in JavaScript functionality, determine if ‘’john’’  exists.If the key ‘’Ford’’ exists, delete it from the object, break the loop, then print the  object.
+
+let dealerShip = {
+   honda : "crv",
+   jeep : "wrangler",
+   chrysler : "pacifica",
+   ford: "f150",
+}
+if ('ford' in dealerShip) {
+   // console.log('yup, ford exists');
+   delete dealerShip.ford;   
+}
+console.log(dealerShip);
+
+
+
+
+
+
+let list = {
+   john: 15,
+   mark: 17,
+   jennifer: 18,
+}
+console.log(list.hasOwnProperty('john'));
+
+
+
+
+
+
+//Create a function that takes an array of two numbers as a parameter.
+Advanced: Sum Range  Return the sum of those two numbers, plus all of the numbers in-between.
+For example, if you pass in [4,1] your function should return 10 because the  numbers between 1 and 4 is 10.
+
+
+let arr = [4,5];
+
+function addedEmUp(arr) {
+   let smallerNum = Math.min(arr[0], arr[1]);
+   let biggerNum = Math.max(arr[0], arr[1]);
+
+   let sum = 0;
+   sum += (smallerNum + biggerNum);
+
+   for (let i = (smallerNum + 1 ); i<biggerNum; i++){
+      sum += i;
+   }
+   return sum;
+}
+
+let array1 = [4,1];
+
+console.log(addedEmUp(array1));
