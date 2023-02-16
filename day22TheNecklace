@@ -1,0 +1,39 @@
+THE MISSION More algorithms, more data  structures, and more  JavaScript!DAY 22Skill Level:InsaneEstimated work: 30-60 minutesImagine a necklace with lettered beads that can slide along the string. In this example, you  could take the N off ERICA and slide it around to the other end to make RICAE. Do it again  to get ICAER, and so on. For the purpose of today’s challenge, we’ll say that the strings  ‘’erica’’, ‘’ricae’’, and ‘’icaer’’ describe the same necklace.Generally, two strings describe the same necklace if you can remove some number of  letters from the beginning of one, attach them to the end in their original ordering, and get  the other string. Reordering the letters in some other way does not, in general, produce a  string that describes the same necklace.Write a function that returns whether two strings describe the same necklace.same_necklace(‘’nicole’’, ‘’icolen’’) => true same_necklace(‘’nicole’’, ‘’lenico’’) => true same_necklace(‘’nicole’’, ‘’coneli’’) => false same_necklace(‘’aabaaaaabaab’’, ‘’aabaabaabaaa’’) => true same_necklace(‘’abc’’, ‘’cba’’) => false same_necklace(‘’xxyyy’’, ‘’xxxyy’’) => false same_necklace(‘’xyxxz’’, ‘’xxyxz’’) => false same_necklace(‘’x’’, ‘’x’’) => true same_necklace(‘’x’’, ‘’xx’’) => false same_necklace(‘’x’’, ‘’’’) => false same_necklace(‘’’’, ‘’’’) => true
+
+
+function same_necklace(first , second){
+   let same = false;
+   let firstIndexStop = 0;
+   let secondStartingIndex = 0;
+   let newEndOnSecond;
+   let beginningOfSecond;
+   let firstFirstSlice;
+   let firstEndingSlice;
+
+   if (second.includes(first[0]) ) {
+      secondStartingIndex = second.indexOf(first[0]);
+      newEndOnSecond = second.slice(secondStartingIndex);
+      beginningOfSecond = second.slice(0, secondStartingIndex);
+}  
+
+   if (first.includes(newEndOnSecond) && first.includes(beginningOfSecond)){
+      firstIndexStop = newEndOnSecond.length;
+      firstFirstSlice = first.slice(0, firstIndexStop);
+      firstEndingSlice = first.slice(firstIndexStop);
+   }
+
+   if ((firstFirstSlice === newEndOnSecond) && (firstEndingSlice === beginningOfSecond)){
+      console.log('Dude, it\'s a necklace.');
+      same = true;
+   } else { console.log('No necklace here....');}
+   return same;
+
+}
+
+
+same_necklace('word', 'rdwo');
+same_necklace('nicole', 'lenico');
+same_necklace('abc', 'cba');
+same_necklace('x', 'xx');
+same_necklace('xxyxx', 'xxyxxz'); 
+same_necklace('xxxyy', 'xxxyyy'); 
