@@ -1,0 +1,89 @@
+//Given the array below, perform the following tasks:
+// var words =  [“ant”, “awkward”, “car”, “zebra”];
+//Reverse this array using the built-in reverse function
+//Reverse this array again, but this time using a loop and WITHOUT any built-in  functions
+
+console.log(words.reverse());
+
+
+
+let words = ['ant', 'awkward', 'bravo', 'car' , 'zebra'];
+
+
+for (let i = 0; i < words.length / 2; i++){
+   let movedValue = words[i];
+   let reversedIndex = words.length - (1 + i);
+   words[i] = words[reversedIndex]; 
+   words[reversedIndex] = movedValue;
+} 
+
+console.log(words); 
+
+
+
+
+//var nums = [2,3,4,5,6,7,8,9,10,11,12];
+//Create a variable named evenTotal
+//Write code that loops through the nums array, adds only the even numbers,  
+//and stores the final result in the evenTotal variable
+
+let evenTotal = 0;
+for (let i = 0 ; i < nums.length; i++) {
+
+   if (nums[i] % 2 === 0) {
+      evenTotal += nums[i];
+ }}
+console.log(evenTotal);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Create a multidimensional array that holds this matrix: 
+1  2  3
+4  5  6
+Create a second multidimensional array that holds this matrix:
+7 8
+9 10
+11 11
+Multiply the two matrices and store the result in a third matrix  
+(multidimensional array) named result Your final result should be: 
+
+58.  64
+139.  154
+
+
+
+ let first = [[1,2,3],[4,5,6]];
+
+let second = [[7,8],[9,10],[11,12]];
+
+let result = [[,],[,]];
+
+ */
+
+/* 
+for (let i = 0 ; i < first.length; i++){
+   
+   let adding = 0;
+   for (let j = 0; j < first[i].length; j++){
+      
+      
+      
+      adding += (first[i][j] * second[j][i]);
+      result[i][j] = adding;
+     
+   }
+   
+   
+}
+  console.log(result);
