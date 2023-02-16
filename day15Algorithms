@@ -1,0 +1,77 @@
+//Build a function that can take any number as a parameter and then return the  sum of all the digits within that number.
+Note: You may NOT use any type of String to solve this problem
+For example, if you pass in the number 412 the function would return 7
+
+
+
+
+
+//part 2: Build a function that can take any number as a parameter and then return the  square root of that number.
+For example, if you pass in the number 100 the function would return 10. 
+
+
+
+
+
+
+//If you used built-in functionality (like Math) to solve the last problem, solve the  same problem only this time without using any built-in functionality ie Write it  from scratch
+
+
+
+
+
+function addDigits(num){
+    let result = 0;
+    
+    if (num < 10) {
+       result += num;
+       return result;
+      } else {      
+      let originalNumber = num;
+      let decimalPower = 0;
+       while( num > 10) {
+         num /= 10;
+         decimalPower++;
+  }
+      let divisor = 10 ** decimalPower;
+      
+      let firstNum = Math.round(originalNumber / divisor);
+      
+      let remainder = Math.round(originalNumber % divisor);
+
+      return result + firstNum + addDigits(remainder);
+
+   }}
+
+console.log(addDigits(412)); 
+
+
+
+
+
+
+
+
+
+//Create a function that takes in two strings as two parameters and returns a  boolean that indicates whether or not the first string is an anagram of the  second string. What is an Anagram?Advanced: AnagramPost a screenshot of your final code to the #advanced-missions channelhttps://en.wikipedia.org/wiki/Anagram
+
+
+ function anagram(string1, string2){
+   let status = false;
+
+   for (let i = 0; i < string1.length; i++){
+      status = string2.includes(string1[i]);
+   }
+
+  return status;
+}
+
+console.log(anagram('abode', 'adobe'));
+console.log(anagram('abodex', 'adobe'));
+console.log(anagram('abodex', 'adobek')); 
+
+
+
+
+
+
