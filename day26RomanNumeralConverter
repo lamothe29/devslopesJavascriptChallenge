@@ -1,0 +1,39 @@
+//You must create a function that takes a number as a parameter and returns the  Roman Numeral for that number.Note: Hardcoding conversions is NOT the solution. You should be able to pass in  ANY number and get the corresponding Roman Numeral
+
+function toRoman(num){
+   let resultingString = '';
+   let workingNum = num;
+
+   let roman = [
+       { letter: 'M', value: 1000},  { letter: 'D', value: 500},   { letter: 'C', value: 100,},    { letter: 'L', value: 50,},
+      { letter: 'X', value: 10,}, { letter: 'V', value: 5,},  { letter: 'I', value: 1,}  ] 
+
+   for (let i = 0 ; i < roman.length; i++){
+
+      let numOfLettersToWrite = Math.floor(workingNum / roman[i].value);
+      let limit = 4 * roman[i].value;
+      
+     
+      if (workingNum >= roman[i].value && workingNum < limit){
+         for (let j=1; j <= numOfLettersToWrite; j++){
+            resultingString += roman[i].letter; 
+         }
+          workingNum -= (numOfLettersToWrite * roman[i].value);
+
+      }  else if  ( workingNum === limit) {
+          resultingString += roman[i].letter;
+          resultingString += roman[i-1].letter;
+          workingNum -= (numOfLettersToWrite * roman[i].value);
+      }  else if  ( workingNum === roman[i-2].value - 1) {
+         resultingString += roman[i].letter;
+         resultingString += roman[i-2].letter;
+         workingNum -= (numOfLettersToWrite * roman[i].value);
+     } 
+      
+   }  
+   
+   console.log('Number in modern value: '+ num + '. Roman Numeral: ' + resultingString);
+}
+
+toRoman(4);
+toRoman(41);
