@@ -1,0 +1,23 @@
+//Create a function that takes any number. Add 1 to each of the digits of the  number and return that value.If you used a String or String functions to solve part 1 you must now solve the  same problem without any strings Example: If you passed in 787 you would return 898.  If you passed in 998 it  would return 10109Part 1: Add DigitPart 2: EnhancePost a screenshot of your final code to the #missions channel
+
+
+let number = 2345;
+let stringedNumber = number.toString();
+let renummedNum = Number(stringedNumber);
+console.log(typeof renummedNum); */
+
+/* function addDigits(num){
+   let stringedNumber = num.toString()
+   let newArr = [];
+   for (let i =0; i< stringedNumber.length; i++){
+      newArr[i] = stringedNumber[i];
+      newArr[i]++;
+   }
+   let stringedArr = newArr.join("");
+   let result = Number(stringedArr);
+   console.log(result);
+}
+   
+addDigits(45);
+addDigits(787);
+addDigits(998); 
