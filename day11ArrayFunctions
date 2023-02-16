@@ -1,0 +1,33 @@
+Let’s refresh some of your programing skills from previous days. 
+Did you know that your loop just ran 100 times, even though you only printed  50 numbers.
+Write a function that returns the total count of integers that are not multiples  of either 6 or 15  between a range of 1 and 200.
+Advanced: Un-Multiple (Optional)Your task is to now get the operation to be 50% more efficient. That means it  should iterate no more than 50 times while still producing the same result.Call the function and then print all even numbers between 2 and 100 (inclusive)
+
+
+function numbers(){
+   for (let i =2; i<=100; i++){
+      if (i %2 === 0){
+         console.log(i);
+      }
+   }
+}
+numbers();
+
+function numbersRefined(){
+   for (let i =2; i<=100; i +=2){
+       console.log(i);  
+   }
+}
+numbersRefined(); 
+
+
+function notX6or15(){
+   let count = 0;
+   for (let i=0; i<=200; i++){
+      if (i % 6 !== 0 && i %15 !== 0){
+         count++;
+      }
+   }
+   return count;
+}
+console.log(notX6or15());
