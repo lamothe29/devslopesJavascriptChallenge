@@ -1,0 +1,49 @@
+You must build a Linked List in JavaScript. You must not look at existing online  solutions for this.A linked list is like an array. You can add and remove elements from it. Each element  holds a reference to the next element.Linked ListPost a screenshot of your final code to the #missions channelCreate a Linked List in JavaScript Create a function to add an element Create a function to remove an element Create a function to remove all elements1 2 3 4Signly Linked ListsHEADLENGTH = 4TAIL4682nextnextnextnull
+
+
+let arrOfObj = [
+   {dollars: 4, index: 0, pointer: 1},
+   {dollars: 6, index: 1, pointer: 2},
+   {dollars: 8, index: 2, pointer: 3},
+   {dollars: 2, index: 3, pointer: null},
+];
+
+function add(dol, arr){
+   arr.push({dollars: dol, index: arr.length, pointer:null});
+   arr[arr.length-2].pointer = arr.length -1;
+   arr[arr.length-1].pointer = null;
+}
+
+function remove(dol, arr){
+   let indexOfRemoved = 0;
+   let foundIndex = false;
+   for( let i = 0; i < arr.length; i++){ 
+      if ( arr[i].dollars === dol) { 
+         indexOfRemoved = i; 
+         arr.splice(i, 1);
+         foundIndex = true;
+      }
+      if (foundIndex){
+         arr[i].index--;
+         arr[i].pointer--;     
+         if (i == arr.length - 1) {
+            arr[i].pointer = null;
+         }
+      }
+    }
+  return arr;
+}
+
+function clear(arr){
+   while( arr.length > 0){ 
+      arr.pop();
+}}
+
+
+add(66, arrOfObj);
+console.log(arrOfObj);
+remove(6, arrOfObj);
+console.log(arrOfObj);
+
+clear(arrOfObj);
+console.log(arrOfObj);
