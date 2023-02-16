@@ -1,0 +1,204 @@
+THE MISSIONThis is your last mission and it’s  gonna be a doozy. Prepare  your cannons for all out war as  we build Battleship!DAY 29Skill Level: ImpossibleEstimated work: 30-60 minutesYou are going to create your own small version of the classic board game  Battleship.REQUIREMENTSThis project will significantly increase your coding skills and help you master  fundamental data structures and algorithms.If you don’t know how to play Battleship then watchhttps://youtu.be/4gHJlYLomrsBattleshipPost your solution to the #missions channel of the chatroom.When the application loads print the text, ‘’Press any key to start the game.’’ When the user presses the key, your code will randomly place two different ships in  two separate locations on the board. Each ship is only 1 unit long (In the real game  ships are 2+ in length). The prompt will then say, ‘’Enter a location to strike ie ‘A2’ ’’ The user will then enter a location. If there is a ship at that location the prompt will read,  ‘’Hit. You have sunk a battleship. 1 ship remaining.’’ If there is not a ship at that location the prompt will read, ‘’You have missed!’’ If you enter a location you have already guessed the prompt will read, «You have  already picked this location. Miss!»1. 2. 3. 4. 5. 6.
+30 DAY CODE CHALLENGE DEVSLOPESThis is your last mission and it’s  gonna be a doozy. Prepare  your cannons for all out war as  we build Battleship!DAY 29Skill Level: ImpossibleEstimated work: 30-60 minutesWhen both of the battleships have been destroyed the prompt will read, ‘’You have  destroyed all battleships. Would you like to play again? Y/N’’ If ‘’Y’’ is selected the game starts over. If ‘’N’’ then the application ends itself.7. 8.Post your solution to the #missions channel of the chatroom.1ABC23
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <h1>BATTLESHIP</h1>
+   <id="gameContainer">
+      <div id="cellContainer">
+         <div id="columnLabel" >1</div>
+         <div id="columnLabel" >2</div>
+         <div id="columnLabel" >3</div>
+                  <div cellIndex="0" class="cell"></div>
+                  <div cellIndex="1" class="cell"></div>
+                  <div cellIndex="2" class="cell"></div>
+                  <div cellIndex="3" class="cell"></div>
+                  <div cellIndex="4" class="cell"></div>
+                  <div cellIndex="5" class="cell"></div>
+                  <div cellIndex="6" class="cell"></div>
+                  <div cellIndex="7" class="cell"></div>
+                  <div cellIndex="8" class="cell"></div>
+               </div>
+               
+         <div class="rowLabels">
+               <div id="rowLabel" >A</div>
+               <div id="rowLabel" >B</div>
+               <div id="rowLabel" >C</div>
+         </div>
+      </div>
+      <div id="statusDisplay">
+         <h2 id="statusText"></h2>
+         <h2 id="numOfShips"></h2>
+         <button id="restartBtn">Push to Start New Game</button>
+      </div>
+      <script src="index.js"></script>
+</body>
+</html>
+
+
+
+.cell{
+   width: 75px;
+   height: 75px;
+   border: 2px solid;
+   box-shadow: 0 0 0 2px;
+   line-height: 75px;
+   font-size: 50px;
+   cursor: pointer;
+}
+h1{
+   font-family: "Montserrat";
+   text-align: center;
+}
+#cellContainer{
+   display: grid;
+   grid-template-columns: repeat(3, auto);
+   width: 225px;
+   margin: auto;
+}
+
+#columnLabel {
+   text-align: center;
+   padding: 10px;
+}
+
+.rowLabels{
+   font-size: 25px;
+   transform: rotate(-90deg);
+   width: 220px;
+   display: inline-flex;
+   justify-content: space-around;
+   right: 20px;
+   position: fixed;
+   left: 20%;
+   bottom: 325px;
+   
+   /* space-between: 30%; */
+}
+
+#statusDisplay {
+   font-family: "Montserrat";
+   text-align: center;
+   justify-content: center;
+   padding-top: 35px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const cells = document.querySelectorAll(".cell");
+const statusText = document.querySelector("#statusText");
+const restartBtn = document.querySelector("#restartBtn");
+
+
+let shipGrid = ['', '','','','','','','',''];
+let playerTargets = ['', '','','','','','','',''];
+let shipsRemaining = 2;
+
+let randomLocation = Math.floor(Math.random() * 9) ;
+
+
+let running = false;
+numOfShips.textContent = `There are ${shipsRemaining} ships remaining.`;
+initializeGame();
+
+function initializeGame(){
+    shipsRemaining = 2;
+    cells.forEach(cell => cell.addEventListener("click", cellClicked));
+    restartBtn.addEventListener("click", restartGame);
+    statusText.textContent = 'Let the games begin! Click the cell that you want to strike first';
+    resetShips();
+
+    running = true;
+}
+
+function resetShips(){
+    let ship1LocationIndex = randomLocation;
+    let ship2LocationIndex = randomLocation;
+    if (ship1LocationIndex === ship2LocationIndex){
+       ship2LocationIndex = shipGrid.length - randomLocation;
+    }
+    shipGrid[ship1LocationIndex] = 'ship1';
+    shipGrid[ship2LocationIndex] = 'ship2';
+
+}
+
+function cellClicked(){
+    const cellIndex = this.getAttribute("cellIndex");
+    
+    if(!running){
+        return;
+    }
+
+    updateCell(this, cellIndex);
+    checkWinner();
+}
+function updateCell(cell, index){
+    playerTargets[index] = "targeted";
+    cell.textContent = "X";
+}
+
+function checkWinner(){
+
+    let ship1Index = shipGrid.indexOf('ship1');
+    let ship2Index = shipGrid.indexOf('ship2');
+
+    if (playerTargets[ship1Index] === 'targeted'){
+        statusText.textContent = 'Hit!!';
+        shipsRemaining--;
+        numOfShips.textContent = `There are ${shipsRemaining} ships remaining.`
+
+    } else if (playerTargets[ship2Index] === 'targeted'){
+        statusText.textContent = 'Hit!!';
+        shipsRemaining--;
+        numOfShips.textContent = `There are ${shipsRemaining} ships remaining.`
+    }  else {
+        statusText.textContent = 'Miss...';
+   
+        
+    }
+
+    if (shipsRemaining === 0){
+        statusText.textContent = 'You won!';
+ 
+        running = false;
+    }
+
+}
+function restartGame(){
+
+    statusText.textContent = `New Game Started`;
+    cells.forEach(cell => cell.textContent = "");
+    running = true;
+}
