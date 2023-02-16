@@ -1,0 +1,23 @@
+//Create a function that takes an array of numbers. Sort the numbers from lowest  to highest (ascending) and then return an array of those sorted values.Use built-in functionality to sort the array.Create a function that takes an array of numbers. Without using built-in  functionality sort the array.Note: This won’t be easy. Try to NOT look up the answer onlineExample:The array [14, 2, 1,12] would be sorted to [1,2,12,14]Part 1: Simple SortingPart 2: Sorting From ScratchPost a screenshot of your final code to the #missions channel
+
+
+
+
+
+
+let array = [ 76, 14, 2, 24, 3, 5];
+
+function sorter(arr){
+   for (let i=1; i< arr.length; i++){
+      for (let j=1; j<arr.length; j++){     
+         if (arr[j] < arr[j-1]){
+            temp = arr[j-1];
+            arr[j-1] = arr[j];
+            arr[j] = temp;
+         }
+      }      
+   }
+   return arr;
+}
+
+console.log(sorter(array));
