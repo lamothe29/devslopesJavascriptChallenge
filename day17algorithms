@@ -1,0 +1,71 @@
+Write a function that accepts an array of strings. Return the longest string.Create a function that takes a string as a parameter.If the string contains certain symbols, remove the symbols, replace each one  with a space, and then return a new string.Example array: [‘’hello’’, ‘’Joe’’, ‘’Card’’]Would return: ‘’hello’’Symbolsto remove: { } [ ] ! < > ( )Part 1: Longest StringPart 2: JunkPost a screenshot of your final code to the #missions channel
+
+
+function longestString(arr){
+   let longest = 0;
+   if (arr.length === 1){
+      return arr[0];
+   }else {
+      for (let i = 1; i< arr.length; i++){
+         if (arr[i].length > arr[longest].length){
+            longest = i;
+         }
+      } return arr[longest];
+   }
+}
+
+
+
+
+
+let stringSample = 'Yay! We are going on an (adventure<>){} right now!';
+let red = (stringSample) => stringSample.replaceAll( / '{'|'}'|'\' |  ']' | '!' |'<' |' >'|'(' |' )'/g , " "); 
+
+console.log( red); */
+/* let replacer = (string) => {
+   string.replaceAll(/{|}|\[|]|!|<|>|(|)/g , " ");
+  
+} */
+/* console.log( (stringSample) => { 
+   stringSample.replaceAll(/{|}|\[|]|!|<|>|(|)/g , " "); 
+}); 
+
+
+
+
+let stringSample = 'Yay! We are going on an (adventure<>){} right now!';
+let red = (stringSample) => stringSample.replaceAll( / '{'|'}'|'\' |  ']' | '!' |'<' |' >'|'(' |' )'/g , " "); 
+
+console.log( red); */
+/* let replacer = (string) => {
+   string.replaceAll(/{|}|\[|]|!|<|>|(|)/g , " ");
+  
+} */
+/* console.log( (stringSample) => { 
+   stringSample.replaceAll(/{|}|\[|]|!|<|>|(|)/g , " "); 
+}); */
+
+
+/* 
+let sample1 = 'Uh! Oh! $paghetti Oh!';
+
+let repl = (sample) => console.log(sample.replaceAll("!" , '^^').replaceAll("$", "&&"));
+
+repl(sample1); */
+
+
+/* let sample2 = 'This is a {}[]!<>() test.'
+
+let repl2 = (samp) => 
+   console.log(samp.replaceAll("{", " ")
+   .replaceAll("}" , " ")
+   .replaceAll("[" , " ")
+   .replaceAll("]" , " ")
+   .replaceAll("!" , " ")
+   .replaceAll("<" , " ")
+   .replaceAll(">" , " ")
+   .replaceAll("(" , " ")
+   .replaceAll(")" , " ")
+)
+
+repl2(sample2);
